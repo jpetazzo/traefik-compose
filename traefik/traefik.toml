@@ -1,0 +1,28 @@
+# Be quiet?
+debug = false
+logLevel = "ERROR"
+
+# Or be chatty?
+#debug = true
+#logLevel = "DEBUG"
+
+defaultEntryPoints = ["http"]
+
+[web]
+# Port for the status/dashboard page
+address = ":8080"
+
+[entryPoints]
+    [entryPoints.http]
+    address = ":80"
+
+#[retry]
+
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+watch = true
+
+# Uncomment the two following lines to automatically expose all apps.
+# (Compose apps will be <servicename>.<projectname>.<domain>)
+#exposedByDefault = true
+#domain = 127.0.0.1.nip.io

@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  wordpress:
+    image: wordpress
+    ports:
+    - 80
+    volumes:
+    - ./html:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    labels:
+    - "traefik.enable=true"
+    - "traefik.frontend.rule=Host:wordpress.127.0.0.1.nip.io"
+
+  db:
+    image: mysql:5
+    volumes:
+    - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      MYSQL_RANDOM_ROOT_PASSWORD: "y"
